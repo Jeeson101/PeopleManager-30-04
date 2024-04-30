@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PeopleManager.Core\PeopleManager.Core.csproj" />
+    <ProjectReference Include="..\PeopleManager.Services\PeopleManager.Services.csproj" />
   </ItemGroup>
 
 </Project>

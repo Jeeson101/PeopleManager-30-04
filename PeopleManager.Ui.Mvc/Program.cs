@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
+using PeopleManager.Services;
 using PeopleManager.Core;
+using PeopleManager.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +11,9 @@ builder.Services.AddDbContext<PeopleManagerDbContext>(options =>
 {
     options.UseInMemoryDatabase(nameof(PeopleManagerDbContext));
 });
+
+builder.Services.AddScoped<OrganizationService>();
+builder.Services.AddScoped<PersonService>();
 
 var app = builder.Build();
 

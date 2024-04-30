@@ -1,25 +1,26 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using PeopleManager.Core;
+using PeopleManager.Services;
 using PeopleManager.Model;
+using PeopleManager.Services;
 
 namespace PeopleManager.Ui.Mvc.Controllers
 {
     public class PeopleController : Controller
     {
-        private readonly PeopleManagerDbContext _dbContext;
+        private readonly PersonService _personService;
+        private readonly OrganizationService _organizationService;
 
-        public PeopleController(PeopleManagerDbContext dbContext)
+        public PeopleController(PersonService personService, OrganizationService organizationService)
         {
-            _dbContext = dbContext;
+            _personService = personService;
+            _organizationService = organizationService;
         }
 
         [HttpGet]
         public IActionResult Index()
         {
-            var people = _dbContext.People
-                .Include(p => p.Organization)
-                .ToList();
+            var people = _personService.Find();
 
             return View(people);
         }
@@ -39,17 +40,15 @@ namespace PeopleManager.Ui.Mvc.Controllers
                 return CreateEditView(person);
             }
 
-            _dbContext.People.Add(person);
-            _dbContext.SaveChanges();
+            _personService.Create(person);
 
             return RedirectToAction("Index");
         }
 
         [HttpGet]
-        public IActionResult Edit([FromRoute]int id)
+        public IActionResult Edit([FromRoute] int id)
         {
-            var person = _dbContext.People
-                .FirstOrDefault(p => p.Id == id);
+            var person = _personService.Get(id);
 
             if (person is null)
             {
@@ -60,27 +59,14 @@ namespace PeopleManager.Ui.Mvc.Controllers
         }
 
         [HttpPost, ValidateAntiForgeryToken]
-        public IActionResult Edit([FromRoute]int id, [FromForm]Person person)
+        public IActionResult Edit([FromRoute] int id, [FromForm] Person person)
         {
             if (!ModelState.IsValid)
             {
                 return CreateEditView(person);
             }
 
-            var dbPerson = _dbContext.People
-                .FirstOrDefault(p => p.Id == id);
-
-            if (dbPerson is null)
-            {
-                return RedirectToAction("Index");
-            }
-
-            dbPerson.FirstName = person.FirstName;
-            dbPerson.LastName = person.LastName;
-            dbPerson.Email = person.Email;
-            dbPerson.OrganizationId = person.OrganizationId;
-
-            _dbContext.SaveChanges();
+            _personService.Update(id, person);
 
             return RedirectToAction("Index");
         }
@@ -88,8 +74,7 @@ namespace PeopleManager.Ui.Mvc.Controllers
         [HttpGet]
         public IActionResult Delete([FromRoute] int id)
         {
-            var person = _dbContext.People
-                .FirstOrDefault(p => p.Id == id);
+            var person = _personService.Get(id);
 
             return View(person);
         }
@@ -97,23 +82,14 @@ namespace PeopleManager.Ui.Mvc.Controllers
         [HttpPost("/[controller]/Delete/{id:int?}"), ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int id)
         {
-            var person = _dbContext.People
-                .FirstOrDefault(p => p.Id == id);
-
-            if (person is null)
-            {
-                return RedirectToAction("Index");
-            }
-
-            _dbContext.People.Remove(person);
-            _dbContext.SaveChanges();
+            _personService.Delete(id);
 
             return RedirectToAction("Index");
         }
-        
+
         private IActionResult CreateEditView(Person? person = null)
         {
-            var organizations = _dbContext.Organizations.ToList();
+            var organizations = _organizationService.Find();
             ViewBag.Organizations = organizations;
             return View(person);
         }
