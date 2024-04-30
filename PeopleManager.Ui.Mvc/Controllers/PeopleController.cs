@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using PeopleManager.Ui.Mvc.Core;
-using PeopleManager.Ui.Mvc.Models;
-using System;
+using PeopleManager.Core;
+using PeopleManager.Model;
 
 namespace PeopleManager.Ui.Mvc.Controllers
 {

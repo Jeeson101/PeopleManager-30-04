@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34511.84
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PeopleManager.Ui.Mvc", "PeopleManager.Ui.Mvc\PeopleManager.Ui.Mvc.csproj", "{9C85193A-0375-4958-ACDD-CE14BB8A42C0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PeopleManager.Ui.Mvc", "PeopleManager.Ui.Mvc\PeopleManager.Ui.Mvc.csproj", "{9C85193A-0375-4958-ACDD-CE14BB8A42C0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PeopleManager.Core", "PeopleManager.Core\PeopleManager.Core.csproj", "{EC170F6B-3B69-457F-9BD3-3C0FBF528D43}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PeopleManager.Model", "PeopleManager.Model\PeopleManager.Model.csproj", "{540D4918-5AD3-4AF2-8187-A8B2D9E09F34}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{9C85193A-0375-4958-ACDD-CE14BB8A42C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9C85193A-0375-4958-ACDD-CE14BB8A42C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9C85193A-0375-4958-ACDD-CE14BB8A42C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC170F6B-3B69-457F-9BD3-3C0FBF528D43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC170F6B-3B69-457F-9BD3-3C0FBF528D43}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC170F6B-3B69-457F-9BD3-3C0FBF528D43}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC170F6B-3B69-457F-9BD3-3C0FBF528D43}.Release|Any CPU.Build.0 = Release|Any CPU
+		{540D4918-5AD3-4AF2-8187-A8B2D9E09F34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{540D4918-5AD3-4AF2-8187-A8B2D9E09F34}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{540D4918-5AD3-4AF2-8187-A8B2D9E09F34}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{540D4918-5AD3-4AF2-8187-A8B2D9E09F34}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

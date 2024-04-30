@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace PeopleManager.Ui.Mvc.Models
+namespace PeopleManager.Model
 {
     public class Person
     {
